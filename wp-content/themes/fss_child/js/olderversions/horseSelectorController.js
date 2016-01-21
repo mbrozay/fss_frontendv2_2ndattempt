@@ -1,15 +1,15 @@
 // http://stackoverflow.com/questions/16509755/how-to-use-checkbox-to-filter-results-with-angular
 
-var horseApp = angular.module('horseApp', ['ngRoute', 'ngCookies']);
+var horseApp = angular.module('horseApp', []);
 
 
-horseApp.controller('MainCtrl', function ($scope, $http, $log, Auth, PostHorses, $cookies){
+horseApp.controller('MainCtrl', function ($scope, $http, $log, Auth, PostHorses){
 	
 	$scope.horses = '';
-	/*Testing Get with hardcoded value in java */
-	 
-	 /* var successCallBack = function(response) {
-     	 $scope.horses = response.data;   	
+	var successCallBack = function(response) {
+     	 $scope.horses = response.data;
+     	// $log.info(response);
+     	
      	
    };
 	
@@ -17,51 +17,38 @@ horseApp.controller('MainCtrl', function ($scope, $http, $log, Auth, PostHorses,
 		 $scope.error = response.data;
   };
   
+  $scope.auth = Auth;
+  $scope.login = function() {
+	  Auth.login();
+    };
+
+    $scope.logout = function() {
+    	Auth.logout();
+    };
+
+    $scope.isAuthenticated = function() {
+      return $scope.loggedIn;
+    };
+    
+    $scope.ph = PostHorses;	
+    $scope.post = function(data){
+/*    	PostHorses.testFunction();
+    	PostHorses.testsubmit(horses);*/
+    	var arr = [];
+    	for(var i in data){
+    	       if(data[i].selectedHorse==true){
+    	           arr.push(data[i].horseid);
+    	       }
+    	}
+    	var jsondata = JSON.stringify(arr);
+    	return jsondata;
+    }
+    
         $http({
         		method:'Get',
         		url:'http://localhost:8080/fss-rest-json/horseSelector'})
-        		.then(successCallBack, errorCallBack);*/
+        		.then(successCallBack, errorCallBack);
         
-	var jsondata = {
-            "sessionToken" : $cookies.get('auth'),
-    };
-	var jsondataStringify = JSON.stringify(jsondata);
-	var response = $http.post('http://localhost:8080/fss-rest-json/getHorses', jsondataStringify);
-    response.success(function(data, status, headers, config) {
-        $scope.horses = data;
-    });
-    response.error(function(data, status, headers, config) {
-        alert( "Exception details: " + JSON.stringify({data: data}));
-    });
-	
-        /*example of a service*/
-   //     $scope.ph = PostHorses;	
-        
-        /*Calling submit for horses. needs to be refactored out of controller */
-        $scope.post = function(data){
-
-        	var arr = [];
-        	for(var i in data){
-        	       if(data[i].selectedHorse==true){
-        	           arr.push(data[i].horseid);
-        	       }
-        	}
-        	var jsondata = {
-                    "sessionToken" : $cookies.get('auth'),
-                    "selectedHorses" : arr
-            };
-        	var jsondataStringify = JSON.stringify(jsondata);
-        	
-        	
-        	var response = $http.post('http://localhost:8080/fss-rest-json/horsePicker', jsondataStringify);
-            response.success(function(data, status, headers, config) {
-                $scope.message = data;
-            });
-            response.error(function(data, status, headers, config) {
-                alert( "Exception details: " + JSON.stringify({data: data}));
-            });
-
-        }
         
        
       });
@@ -84,7 +71,6 @@ horseApp.service('Auth', function() {
 	  return auth;
 	});
 
-/*service called from controller - example only*/
 horseApp.service('PostHorses', function($filter,$http){
 	var ph = {};
 	ph.message = 'Hi';

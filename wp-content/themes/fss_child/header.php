@@ -18,9 +18,11 @@
 <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/css/ie.css" type="text/css">
 <![endif]-->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-cookies.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
 <script src="http://localhost/fss_frontendv2/wp-content/themes/fss_child/js/horseSelectorController.js"></script>
-<script src="http://localhost/fss_frontendv2/wp-content/themes/fss_child/js/testPost.js"></script>
 <script src="http://localhost/fss_frontendv2/wp-content/themes/fss_child/js/signup.js"></script>
+<script src="http://localhost/fss_frontendv2/wp-content/themes/fss_child/js/login.js"></script>
 <?php
 
 if ( ! function_exists( '_wp_render_title_tag' ) ) :

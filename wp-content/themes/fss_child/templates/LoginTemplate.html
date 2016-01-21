@@ -1,0 +1,9 @@
+<div ng-controller="loginCtrl">
+<form action="/" id="myLogin">
+			Username:    <br/><input type="text" id="username" ng-model="loginData.username"> <br/><br/>
+			Password: <br/><input type="password" id="password" ng-model="loginData.password"> <br/><br/>
+			<button type="button" ng-click="submitLogin()">Log in</button>
+			<br>
+			{{message.response}}
+</form>
+</div>		

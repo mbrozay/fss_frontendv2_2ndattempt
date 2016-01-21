@@ -1,0 +1,28 @@
+<div ng-controller="MainCtrl">
+<div data-ng-repeat="horse in horses">
+  <!-- record that this customer has been selected -->
+  <input type="checkbox" ng-model="horse.selectedHorse" /> 
+  {{ horse.horseid }} {{ horse.horsename }} {{ horse.value }} {{horse.selectedHorse}}
+  <br>
+
+</div>
+<input type="submit" name="submit" value="submit" ng-click="post(horses)"/>
+<br>
+
+<br>
+
+<br>
+<table>
+  <!-- table heading goes here -->
+  <tbody>
+      <!-- use our custom filter to only display customers from the cities selected -->
+      <tr data-ng-repeat="horse in horses | selectedHorses">
+          <td>{{ horse.horseid }}</td>
+          <td>{{ horse.horsename }}</td>
+          <td>{{selectedHorses}}</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+
+</div>
