@@ -19,7 +19,12 @@
       <tr data-ng-repeat="horse in horses | selectedHorses">
           <td>{{ horse.horseid }}</td>
           <td>{{ horse.horsename }}</td>
-          <td>{{selectedHorses}}</td>
+          <td>{{ horse.value }}</td>
+      </tr>
+	  <tr>
+       <td></td>
+          <td></td>
+          <td>{{getTotal()}}</td>
       </tr>
   </tbody>
 </table>

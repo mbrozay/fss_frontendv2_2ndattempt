@@ -63,19 +63,6 @@ horseApp.controller('MainCtrl', function ($scope, $http, $log, Auth, PostHorses,
 
         }
         
-        $scope.getTotal = function(){
-
-        	var total = 0;
-        	 for(var i = 0; i < $scope.horses.length; i++){
-        	       if($scope.horses[i].selectedHorse==true){
-        	           total = total + $scope.horses[i].value;
-        	       }
-        	       
-        	}
-        	 return total;
-        }
-        
-        
        
       });
 
